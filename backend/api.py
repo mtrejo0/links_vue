@@ -1,6 +1,7 @@
 import requests
 import json
 import random
+import time
 
 class API():
 
@@ -10,39 +11,39 @@ class API():
         self.items_file = 'items.json'
         self.new_item_id = 0
         
-        users = []
-        items = [
-            {
-            "name": "6.170 Final Project",
-            "tags": ["school", "project"],
-            "link": "",
-            "description": "fdsfd",
-            "link": "https://www.google.com",
-            "id": -1,
-            "username": "moi"
-            },
-            {
-            "name": "Twitter SWE",
-            "tags": ["school", "project"],
-            "link": "",
-            "description": "",
-            "link": "https://www.google.com",
-            "id": -2,
-            "username": "moi"
-            },
-            {
-            "name": "6.170 Final Project",
-            "tags": ["school", "project"],
-            "link": "",
-            "description": "",
-            "id": -3,
-            "username": "moi"
-            },
-        ]
-        with open(self.items_file, 'w') as f:
-            json.dump(items, f)
-        with open(self.users_file, 'w') as f:
-            json.dump(users, f)
+        # users = []
+        # items = [
+        #     {
+        #     "name": "6.170 Final Project",
+        #     "tags": ["school", "project"],
+        #     "link": "",
+        #     "description": "fdsfd",
+        #     "link": "https://www.google.com",
+        #     "id": -1,
+        #     "username": "moi"
+        #     },
+        #     {
+        #     "name": "Twitter SWE",
+        #     "tags": ["school", "project"],
+        #     "link": "",
+        #     "description": "",
+        #     "link": "https://www.google.com",
+        #     "id": -2,
+        #     "username": "moi"
+        #     },
+        #     {
+        #     "name": "6.170 Final Project",
+        #     "tags": ["school", "project"],
+        #     "link": "",
+        #     "description": "",
+        #     "id": -3,
+        #     "username": "moi"
+        #     },
+        # ]
+        # with open(self.items_file, 'w') as f:
+        #     json.dump(items, f)
+        # with open(self.users_file, 'w') as f:
+        #     json.dump(users, f)
 
     ## ITEMS
 
@@ -61,6 +62,7 @@ class API():
     def add_item(self, item):
         item['id'] = self.new_item_id
         self.new_item_id += 1
+        item["timestamp"] = time.time()
         self.save_items(self.get_items() + [item])
         return item
         

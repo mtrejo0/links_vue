@@ -15,13 +15,24 @@
         <div v-if="item.description">
             <strong>Description: </strong>  {{item.description}}
         </div>
+        <div v-if="item.time">
+            <strong>Time commitment: </strong> {{item.time}} min
+        </div>
+        
+    </div>
+    <div>
+        <v-btn v-if="this.username.length > 0 && item.username == this.username" v-on:click="deleteItem()">
+            Delete
+        </v-btn>
+        <div v-if="item.timestamp">
+            {{new Date(item.timestamp * 1000).toLocaleDateString("en-US")}}
+            {{new Date(item.timestamp * 1000).toLocaleTimeString("en-US")}}
+        </div>
         <div v-if="item.username">
             By: {{item.username}}
         </div>
     </div>
-    <v-btn v-if="item.username == this.username" v-on:click="deleteItem()">
-        Delete
-    </v-btn>
+    
   </div>
 </template>
 
